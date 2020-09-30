@@ -1,0 +1,28 @@
+<nav class="d-print-none navbar navbar-expand-md navbar-light bg-light">
+
+  <a class="navbar-brand" href="<%=root_path%>">
+    <img src="/logo.png" height="30em">
+  </a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarToggler">
+
+    <form class="d-inline d-md-none form-inline my-2 my-lg-0">
+      <%= render 'application/menus/left' %>
+      <%= render 'application/menus/right' %>
+    </form>
+
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+      </ul>
+
+    <div class="btn-group ml-auto mr-3">
+    </div>
+
+    <%#= link_to destroy_user_session_path do %><i class='text-muted fas fa-sign-out-alt'></i><%# end %>
+  </div>
+
+</nav>

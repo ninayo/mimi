@@ -1,0 +1,38 @@
+<%
+	_admin_only = defined?(admin_only) && admin_only
+	_admin_only = (_admin_only && current_user.admin?) || !_admin_only
+%>
+<%
+	if _admin_only
+		if !defined?(include) || defined?(include) && include.include?(current_user.partner_id)
+			if !defined?(exclude) || defined?(exclude) && !exclude.include?(current_user.partner_id)
+				if !defined?(must_be_member_of_one_or_more_of) || !( must_be_member_of_one_or_more_of & current_user.groups ).empty?
+					if !defined?(admin_only) || admin_only
+						if defined?(dashboard)
+							url   = "/dashboards/#{dashboard}"
+							_icon = (defined?(icon) ? icon : 'fas fa-chart-line')
+%>
+<div class="d-none d-md-block p-2 text-center h4 text-primary" data-toggle="popover" data-trigger="hover" data-content="<%=dashboard.titleize%> Dashboard"><%= link_to '', url, class: _icon, style: 'text-decoration: none' %></div>
+<a class="d-inline d-md-none nav-item text-primary" href="<%=url%>"><i class="<%=_icon%>"></i></a>
+<%
+					else
+            _url   = (defined?(url) && !url.blank? ? url : url_for(action: (defined?(action) ? action : 'index'), controller: target))  rescue nil
+            _icon  = (defined?(icon) ? Icons.icon(icon) : Icons.icon(target))
+            _icon  = _icon || Icons.unknown
+%>
+<div class="d-none d-md-block p-2 text-center h4 text-primary" data-toggle="popover" data-trigger="hover" data-content="<%=(defined?(title) ? title : target.titleize)%>">
+	<%= link_to _url do %>
+		<i class="<%=_icon%>"></i>
+	<% end %>
+</div>
+<a class="d-inline d-md-none nav-item text-primary" href="<%=_url%>"><i class="<%=_icon%>"></i></a>
+<%
+						end
+					end
+				end
+			end
+		end
+	end
+%>
+
+

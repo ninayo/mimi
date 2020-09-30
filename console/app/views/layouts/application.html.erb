@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ninayo Mimi Console</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%# cache(current_user_cache_digest('menu_main')) do %>
+      <%= render 'application/menus/main' %>
+    <%# end %>
+
+    <%= render 'flash' %>
+
+    <div class="d-flex">
+      <div class="mt-2 mb-2 ml-1 p-0 d-print-none d-none d-md-block flex-column bg-light shadow">
+        <%# cache(current_user_cache_digest('menu_left')) do %>
+          <%= render 'application/menus/left' %>
+        <%# end %>
+      </div>
+      <main role="main" class="container-fluid mb-1">
+        <%= yield %>
+      </main>
+      <%# if current_user.admin? %>
+        <div class="mt-2 mb-2 mr-1 p-0 d-print-none d-none d-md-block flex-column bg-light shadow">
+          <%# cache(current_user_cache_digest('menu_right')) do %>
+            <%= render 'application/menus/right' %>
+          <%# end %>
+        </div>
+      <%# end %>
+    </div>
+
+    <%= render 'footer' %>
+
+  </body>
+</html>
