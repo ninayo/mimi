@@ -48,7 +48,7 @@ A range of other operations will be required:
 1. Audit trail: Get a complete, blockchain backed, history of all actions associated with a profile.
 
 ## Model
-`To be included from repo once uploaded.`
+![Overview](/model.png?raw=true)
 
 ### Consumer Identifiers
 #### Merge Operations
